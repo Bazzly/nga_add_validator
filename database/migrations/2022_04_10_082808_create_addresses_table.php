@@ -26,9 +26,6 @@ class CreateAddressesTable extends Migration
             $table->string('longitude')->nullable();
             $table->boolean('is_verified')->default(0);
             $table->foreignId('user_id')->constrained();
-
-
-
             $table->timestamps();
         });
     }

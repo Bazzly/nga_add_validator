@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
+    protected $gaurded = ['is_verified'];
     use HasFactory;
 }

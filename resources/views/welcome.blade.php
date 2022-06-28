@@ -23,33 +23,45 @@
     </head>
     <body class="antialiased">
         <div class="inline-block mr-2 mt-2">
-            <button type="button" class="focus:outline-none text-gray-900 text-sm py-2.5 px-5 rounded-md hover:bg-gray-200">Fork Project</button>
-         </div>
+        
+            <button type="button" class="focus:outline-none text-gray-900 text-sm py-2.5 px-5 rounded-md hover:bg-gray-200">
+                <a href="https://github.com/Bazzly/nga_add_validator/fork">
+              Fork Project
+                </a>
+            </button>
+         
+          </div>
+
          <div class="inline-block mr-2 mt-2">
              <a href="{{ route('address/validate') }}">
             <button type="button" class="focus:outline-none text-gray-900 text-sm py-2.5 px-5 rounded-md hover:bg-gray-200">Validate Address</button>
              </a>
          </div>
-        {{-- <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        <div class="relative flex items-top justify-center bg-gray-100 dark:bg-gray-900 sm:items-center p-4 sm:pt-0">
+            <h4 class="text-base text-indigo-600 font-semibold tracking-wide uppercase">You can help us verify and be part of the AVS community</h4>
             @if (Route::has('login'))
-                <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+           
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
+                
+                
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                         <button class="bg-white hover:bg-purple-700 p-4 m-6 border-4 border-black border-opacity-0 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 bg-red-500 hover:bg-purple-700 ">
+                            <a href="{{ route('register') }}" class="ml-4 text-sm underline">Join us</a>
+                         </button>
                         @endif
-                        <a href="{{ route('address/validate') }}" class="text-sm text-gray-700 underline">Address</a>
+                 
 
                     @endauth
-                </div>
-            @endif --}}
-            {{-- <button class="bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 bg-red-500 hover:bg-red-700 ">
-                Sign up
-              </button> --}}
-
+                
+            @endif
+          <button class="bg-indigo-600 hover:bg-purple-700 p-4 m-6 border-4 border-black border-opacity-0 text-white focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 bg-red-500 hover:bg-red-700 ">
+                 <a href="{{ route('login') }}" class="ml-4 text-sm underline">Login
+                 </a>
+              </button>
+        </div>
             <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="py-12 bg-white">
 
