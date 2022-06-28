@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('regcodes', function (Blueprint $table) {
             $table->id();
             $table->string('code');
+            $table->string('email');
             $table->boolean('is_valid')->default(1);
             $table->timestamps();
         });

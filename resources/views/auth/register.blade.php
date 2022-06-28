@@ -21,7 +21,7 @@
 
             <div>
                 <x-label for="regcode" :value="__('Registration code')" />
-
+<span>Generate your code here</span>
                 <x-input id="regcode" class="block mt-1 w-full" type="text" name="regcode" :value="old('regcode')" required autofocus />
             </div>
 
