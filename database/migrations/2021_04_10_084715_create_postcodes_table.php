@@ -15,9 +15,9 @@ class CreatePostcodesTable extends Migration
     {
         Schema::create('postcodes', function (Blueprint $table) {
             $table->id();
-            $table->integer('lga_id');
-            $table->string('town');
             $table->string('code');
+            $table->foreignId('lga_id')->constrained();
+            $table->string('town');
             $table->timestamps();
         });
     }

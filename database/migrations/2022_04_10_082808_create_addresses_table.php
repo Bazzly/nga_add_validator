@@ -15,6 +15,20 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
+            $table->string('house_number');
+            $table->string('street_name');
+            $table->string('community_name');
+            $table->string('landmark');
+            $table->string('nearest_bus_stop');
+            $table->foreignId('postcode_id')->constrained();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->boolean('is_verified')->default(0);
+            $table->foreignId('user_id')->constrained();
+
+
+
             $table->timestamps();
         });
     }

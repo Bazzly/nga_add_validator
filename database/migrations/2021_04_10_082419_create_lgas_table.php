@@ -15,9 +15,9 @@ class CreateLgasTable extends Migration
     {
         Schema::create('lgas', function (Blueprint $table) {
             $table->id();
-            $table->string('state_id');
             $table->string('name');
-            $table->string('lga_code')->nullable();
+            $table->foreignId('state_id')->constrained();
+            $table->string('code')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('area_cover')->nullable();
