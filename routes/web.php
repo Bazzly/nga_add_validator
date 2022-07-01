@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +22,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 Route::get('address/validate', [AddressController::class, 'index'])->name('address/validate');
+Route::get('registration-code', [RegisteredUserController::class, 'generateRegCode'])->name('registration-code');
+Route::post('getRegCode', [RegisteredUserController::class, 'getRegCode'])->name('getRegCode');
 
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

@@ -19,9 +19,9 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
-            <div>
+            <div class="pt-2">
                 <x-label for="regcode" :value="__('Registration code')" />
-<span>Generate your code here</span>
+<i class="text-sm">Generate your code <a href="/registration-code" class="text-white border border-2 rounded-lg bg-gray-900 px-1 hover:bg-gray-200 hover:text-gray-900"> here</a></i>
                 <x-input id="regcode" class="block mt-1 w-full" type="text" name="regcode" :value="old('regcode')" required autofocus />
             </div>
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegCode as MailRegCode;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use ErrorException;
@@ -13,6 +14,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredUserController extends Controller
 {
@@ -48,10 +50,9 @@ class RegisteredUserController extends Controller
         // if(User::where('id','=',1)->first()->regcode == $request->regcode){.
         $validRegistrationbCode = Regcode::where('code', $request->regcode)->first()->is_valid;
 
-if(!boolval($validRegistrationbCode)){
-    return redirect()->back()->withErrors('This code has already been used by another user');
-      
-}
+        if (!boolval($validRegistrationbCode)) {
+            return redirect()->back()->withErrors('This code has already been used by another user');
+        }
 
 
         Regcode::where('code', $request->regcode)->update([
@@ -69,5 +70,43 @@ if(!boolval($validRegistrationbCode)){
 
 
         return redirect(RouteServiceProvider::HOME);
+    }
+
+    public function generateRegCode()
+    {
+
+        return view('Auth.generatecode');
+    }
+
+    public function getRegCode(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email:rfc,dns|max:255|unique:users',
+        ]);
+
+        // checfk if the email already exist in the regCode table  
+        $emailExist = Regcode::where('email', $request->input('email'))->exists();
+
+        if ($emailExist) {
+            return redirect()->back()->withErrors('You have already generated code with this email');
+        }
+        // Generate random string of eight(8) characters
+        $regcode = Str::random(8);
+
+        //    Make the input email and generated registration code to array
+        $data = [
+            'title'=>'Registration code',
+            "regCode" => $regcode,
+            "email" => $request->input('email')
+        ];
+        // send registration code to the users email.
+        Mail::to($request->input('email'))->send(new MailRegCode($data));
+        // Create a new registration code in the data in the regcode table
+        $regCode = new Regcode();
+        $regCode->code = $regcode;
+        $regCode->email = $request->input('email');
+        $regCode->save();
+
+        return redirect()->back()->withStatus('Hello!, Kindly check your email for the generated code thanks.');
     }
 }

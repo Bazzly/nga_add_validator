@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Regcode extends Model
 {
-    protected $fillable=['is_valid'];
+    protected $fillable = ['email','code'];
+    protected $gaurded = ['is_valid'];
     use HasFactory;
 }
