@@ -23,7 +23,18 @@
             </div>
 
             <!-- Password -->
-
+{{-- capcha --}}
+  <div class="form-group pt-4 px-8">
+                {{-- <label for="capatcha">Captcha</label> --}}
+                <div class="captcha text-center">
+                  <span>{!! app('captcha')->display() !!}</span>
+                  <!-- <button type="button" class="btn btn-success refresh-cpatcha"><i class="fa fa-refresh"></i></button> -->
+                </div>
+               
+                @error('g-recaptcha-response')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+              </div>
 
             <!-- Remember Me -->
 

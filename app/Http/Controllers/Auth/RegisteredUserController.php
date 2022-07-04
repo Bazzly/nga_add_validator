@@ -82,6 +82,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'email' => 'required|string|email:rfc,dns|max:255|unique:users',
+            'g-recaptcha-response' => 'required|captcha'
         ]);
 
         // checfk if the email already exist in the regCode table  
@@ -95,7 +96,7 @@ class RegisteredUserController extends Controller
 
         //    Make the input email and generated registration code to array
         $data = [
-            'title'=>'Registration code',
+            'title' => 'Registration code',
             "regCode" => $regcode,
             "email" => $request->input('email')
         ];
@@ -108,5 +109,10 @@ class RegisteredUserController extends Controller
         $regCode->save();
 
         return redirect()->back()->withStatus('Hello!, Kindly check your email for the generated code thanks.');
+    }
+
+    public function refreshCaptcha()
+    {
+        return response()->json(['captcha' => captcha_img()]);
     }
 }
