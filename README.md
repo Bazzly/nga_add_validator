@@ -7,7 +7,7 @@
 
 
 ## Installation
-1. Fork the project master here ![](https://github.com/Bazzly/nga_add_validator/fork)
+1. Fork the project master here [https://github.com/Bazzly/nga_add_validator/fork]
 2. Copy these files into the new project](#installation)
 3. Update the README, replacing the contents below as prescribed.
 4. Add any libraries, assets, or hard dependencies whose source code will be included
