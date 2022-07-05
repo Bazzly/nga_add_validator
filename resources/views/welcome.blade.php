@@ -119,10 +119,10 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Transfers are instant</p>
+              <p class="ml-16 text-lg leading-6 font-medium text-gray-900">Location Identity verification</p>
             </dt>
             <dd class="mt-2 ml-16 text-base text-gray-500">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.
+              Nigeria Address Verification System is a project that securely stores and verifies Nigeria's address system. Using this data, people can check the real-world validity of their address, helping to reduce fraud.
             </dd>
           </div>
 
