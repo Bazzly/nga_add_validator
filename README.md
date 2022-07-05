@@ -46,9 +46,9 @@ Other things to include:
 -   **Links to project**
 -   The link will be available once the version 1 of the project is completed
 
-**Screenshot**: If the software has visual components, place a screenshot after the description; e.g.,
+**Screenshot**: 
 
-![](https://raw.githubusercontent.com/cfpb/open-source-project-template/main/screenshot.png)
+![](https://github.com/Bazzly/nga_add_validator/blob/master/public/NANS_01.png)
 
 ## Dependencies
 
