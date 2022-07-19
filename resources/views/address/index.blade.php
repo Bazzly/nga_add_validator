@@ -41,7 +41,11 @@
         <h3 class="text-lg font-medium leading-6 text-gray-900">Address update</h3>
         <p class="mt-1 text-sm text-gray-600">This information will be soled and you own a share of it.</p>
       </div>
-      {{ $errors }}
+      <span class="font-light italic text-sm text-green-400">
+      @if (\Session::has('success'))
+      {{\Session::get('success')}}
+      @endif
+      </span>
     </div>
 
 

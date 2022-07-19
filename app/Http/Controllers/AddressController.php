@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\States;
 use App\Models\Lgas;
 use App\Models\Postcodes;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -44,9 +45,9 @@ class AddressController extends Controller
             $request->all(),
             [
                 'country' => ['required', 'string', 'max:225'],
-                'state' => ['required', 'integer', 'max:225'],
-                'lga' => ['required', 'integer', 'max:225'],
-                'town' => ['required', 'string','min:3', 'max:225','unique:postcodes'],
+                'state' => 'required|numeric|digits_between:1,10',
+                'lga' => 'required|numeric|digits_between:1,10',
+                'town' => ['required', 'string', 'min:3', 'max:225', 'unique:postcodes'],
                 'code' => 'required|numeric|digits:6',
                 // 'avatar' => [
                 //     'required',
@@ -59,14 +60,15 @@ class AddressController extends Controller
                 'country.string' => 'Country field can only accept alphabet',
                 'country.max' => 'Country field do not accept more than 225 character',
                 'state.required' => 'State field can not be empty',
-                'state.integer' => 'State field can not be modify from default',
-                'state.max' => 'State field do not accept more than 225 character',
+                'state.numeric' => 'State field can not be modify from default',
+                'state.digits_between' => 'State field only accept character between 1 to 10',
                 'lga.required' => 'Lga field can not be empty',
-                'lga.integer' => 'Lga field can not be modify from default',
-                'lga.max' => 'Lga field do not accept more than 225 character',
+                'lga.numeric' => 'Lga field can not be modify from default',
+                'lga.digits_between' => 'Lga field only accept character between 1 to 10',
                 'town.required' => 'Town field can not be empty.',
                 'town.string' => 'Town field can only accept alphabet.',
                 'town.max' => 'Town field do not accept more than 225 character',
+                'town.unique' => 'The town is already available in our database',
                 'code.required' => 'Postcode field can not be empty.',
                 'code.numeric' => 'Postcode field can not accept any other value than numbers.',
                 'code.digits' => 'Postcode field do not accept less or greater than 6 characters',
@@ -79,8 +81,17 @@ class AddressController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        $validated = $validator->validated();
-        dd($validated);
+
+
+        $postcode = new Postcodes;
+        $postcode->code = $request->code;
+        $postcode->town = $request->town;
+        $postcode->lga_id = $request->lga;
+        $postcode->state_id = $request->state;
+        $postcode->user_id = Auth::user()->id;
+        $postcode->save();
+
+        return redirect()->back()->with('success', 'Postcode recorded successfully added');
     }
 
     /**
