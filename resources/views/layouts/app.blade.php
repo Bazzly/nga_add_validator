@@ -32,5 +32,8 @@
                 {{ $slot }}
             </main>
         </div>
+        <footer class="text-center">
+            @2022 NAVS
+        </footer>
     </body>
 </html>

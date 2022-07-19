@@ -21,9 +21,13 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+Route::get('add-new-address/{id?}', [AddressController::class, 'viewAddress'])->name('add-new-address')->middleware(['auth']);
+Route::post('addPostcode', [AddressController::class,'addPostcode'])->name('add-postcode')->middleware(['auth']);
 Route::get('address/validate', [AddressController::class, 'index'])->name('address/validate');
+
 Route::get('registration-code', [RegisteredUserController::class, 'generateRegCode'])->name('registration-code');
 Route::post('getRegCode', [RegisteredUserController::class, 'getRegCode'])->name('getRegCode');
 
 
 require __DIR__ . '/auth.php';
+  
