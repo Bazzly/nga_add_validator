@@ -33,7 +33,7 @@
           </div>
 
          <div class="inline-block mr-2 mt-2">
-             <a href="{{ route('address/validate') }}">
+             <a href="{{ route('postcode/validate') }}">
             <button type="button" class="focus:outline-none text-gray-900 text-sm py-2.5 px-5 rounded-md hover:bg-gray-200">Validate Address</button>
              </a>
          </div>

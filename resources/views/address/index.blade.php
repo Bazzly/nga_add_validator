@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight flex">
-            {{ __('Add new Address') }}
+            {{ __('Add new address') }}
         </h2>
         <div class="px-6">
                 <a href="{{ URL::to('dashboard') }}"> 
@@ -38,7 +38,7 @@
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
       <div class="px-4 sm:px-0">
-        <h3 class="text-lg font-medium leading-6 text-gray-900">Address update</h3>
+        <h3 class="text-lg font-medium leading-6 text-gray-900">Postcode update</h3>
         <p class="mt-1 text-sm text-gray-600">This information will be soled and you own a share of it.</p>
       </div>
       <span class="font-light italic text-sm text-green-400">
@@ -51,16 +51,16 @@
 
     {{-- code start --}}
     <div class="mt-5 md:mt-0 md:col-span-2">
-      <form action="{{ route('add-postcode') }}" method="POST">
+      <form action="{{ route('add-address') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="shadow sm:rounded-md sm:overflow-hidden">
           <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
             <div class="grid grid-cols-3 gap-6 bg-purple-400">
               <div class="col-span-3 sm:col-span-2">
-                <label for="company-website" class="text-sm px-2 font-medium text-white uppercase  bg-gray-500">Add town and postcode</label>
+                <label for="company-website" class="text-sm px-2 font-medium text-white uppercase  bg-gray-500">Add address</label>
                 <div class="mt-1 flex rounded-md shadow-sm">
-                  <span class="inline-flex items-center text-white text-sm"> 
-                     If you cannot find your address town and postcode in the address update section, add it here. </span>
+                  <span class="text-white text-sm"> 
+                     If you cannot find your address town and postcode in the address update section,  add it  <a href="{{ URL::to('/add-new-postcode') }}"> <i class="text-gray-800">here.</i></a> </span>
 
                 </div>
               </div>
@@ -107,81 +107,90 @@
               <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
               @enderror
               </div>
+                  {{-- <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <label for="nearest_bus_stop" class="block text-sm font-medium text-gray-700">Postal code</label>
+                <input required type="number" name="nearest_bus_stop" id="nearest_bus_stop" autocomplete="nearest_bus_stop" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                @error('nearest_bus_stop')
+              <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
+              @enderror
+              </div> --}}
 
-              
-          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
-          </div>
-        </div>
-      </form>
-
-    {{-- code end --}}
-          <div class="mt-5 md:mt-0 md:col-span-2">
-      <form action="#" method="POST">
-        <div class="shadow sm:rounded-md sm:overflow-hidden">
-          <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-            <div class="grid grid-cols-3 gap-6 bg-purple-400">
-              <div class="col-span-3 sm:col-span-2">
-                <label for="company-website" class="text-sm px-2 font-medium text-white uppercase  bg-gray-500">Update Address</label>
-                <div class="mt-1 flex rounded-md shadow-sm">
-                  <span class="inline-flex items-center text-white text-sm"> 
-                    Update address here to earn </span>
-
-                </div>
-              </div>
-            </div>
-
-                          <div class="col-span-6 sm:col-span-3">
-                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
-                <select id="country" name="country" autocomplete="country-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option>Nigeria</option>
-                </select>
-              </div>
-           <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label for="region" class="block text-sm font-medium text-gray-700">State / Province</label>
-                <input type="text" name="region" id="region" autocomplete="address-level1" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-              </div>
-            <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-                <label for="town" class="block text-sm font-medium text-gray-700">lga</label>
-                <input type="text" name="town" id="town" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-              </div>
               <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-                <label for="code" class="block text-sm font-medium text-gray-700">Postal code</label>
-                <input type="text" name="code" id="code" autocomplete="code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                <label for="landmark" class="block text-sm font-medium text-gray-700">Landmark</label>
+                <input required type="text" name="landmark" id="landmark" autocomplete="nearest_bus_stop" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                @error('landmark')
+              <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
+              @enderror
               </div>
+              <script>
+                function onlyOne(checkbox) {
+    var checkboxes = document.getElementsByName('category')
+    checkboxes.forEach((item) => {
+        if (item !== checkbox) item.checked = false
+    })
+}
+              </script>
+<div class="bg-purple-500 text-white">
+  <h4 class="uppercase font-bold">Address category</h4>
 
-              <div class="col-span-6">
-                <label for="street-address" class="block text-sm font-medium text-gray-700">Street address</label>
-                <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-              </div>
 
-  
-
-   
-            <div>
-              <label for="about" class="block text-sm font-medium text-gray-700"> About </label>
-              <div class="mt-1">
-                <textarea id="about" name="about" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md" placeholder="you@example.com"></textarea>
-              </div>
-              <p class="mt-2 text-sm text-gray-500">Brief description for your profile. URLs are hyperlinked.</p>
-            </div>
-
+  <div class="p-4">
+    <div class="">
+      <span> What address information do you want to add  </span>
+      <select name="category" class="mt-1 block w-48 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-gray-800 border-gray-900 sm:text-sm">
+        @forelse ($categories as $category)
+              <option value="{{ $category->name }}">{{$category->name}}</option>
+        @empty
             
-     
+        @endforelse
+      
+      </select>
+   
+</div>
 
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <label for="name" class="block text-sm font-medium">Name</label>
+                <input required type="text" name="name" id="name" autocomplete="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm text-gray-800 border-gray-900 rounded-md">
+                @error('name')
+              <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
+              @enderror
+              </div>
 
-                    <div class="flex items-start">
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <label for="name" class="block text-sm font-medium">street_name</label>
+                <input required type="text" name="name" id="name" autocomplete="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm text-gray-800 border-gray-900  rounded-md">
+                @error('name')
+                <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
+                @enderror
+              </div>
+
+                <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                <label for="house_number" class="block text-sm font-medium">House/office/shops number</label>
+                <input required type="number" name="house_number" id="house_number" autocomplete="house_number" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm text-gray-800 border-gray-900  rounded-md">
+                @error('house_number')
+              <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
+              @enderror
+              </div>
+  </div>
+</div>
+                  <div class="flex items-start">
                   <div class="flex items-center h-5">
-                    <input id="comments" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+                    <input required id="Geolocate" name="geolocate" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
                   </div>
                   <div class="ml-3 text-sm">
-                    <label for="comments" class="font-medium text-gray-700">Comments</label>
-                    <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                    <label for="Geolocate" class="font-medium text-gray-700">Geolocate</label><br>
+                    <i class="text-purple-500">When you tick the box, you agree that your G.P.S location should be capture.</i>
                   </div>
+                    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+                      <label class="block text-sm font-medium text-gray-700"> G.P.S (Lat,long) </label>
+                <input required disabled type="text" name="location" id="location" autocomplete="location" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md h-42">
+        
+        
+              </div>
                 </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700"> Photo </label>
+              <label class="block text-sm font-medium text-gray-700"> Preview </label>
               <div class="mt-1 flex items-center">
                 <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
                   <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
@@ -193,7 +202,7 @@
             </div>
 
             <div>
-              <label class="block text-sm font-medium text-gray-700"> Cover photo </label>
+              <label class="block text-sm font-medium text-gray-700"> House image </label>
               <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                 <div class="space-y-1 text-center">
                   <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48" aria-hidden="true">
@@ -202,24 +211,24 @@
                   <div class="flex text-sm text-gray-600">
                     <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
                       <span>Upload a file</span>
-                      <input id="file-upload" name="file-upload" type="file" class="sr-only">
+                      <input required id="image" name="image" type="file" class="sr-only">
                     </label>
                     <p class="pl-1">or drag and drop</p>
                   </div>
-                  <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                  <p class="text-xs text-gray-500">PNG, JPG, GIF up to 2MB</p>
                 </div>
               </div>
             </div>
           </div>
+              
           <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
             <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
           </div>
         </div>
       </form>
-    </div>
-  </div>
 
-    </div>
+    {{-- code end --}}
+           </div>
 
     
   </div>

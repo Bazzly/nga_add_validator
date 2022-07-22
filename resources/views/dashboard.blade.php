@@ -5,9 +5,17 @@
             {{ __('Dashboard') }}
         </h2>
         <div class="px-6">
-                <a href="{{ URL::to('/add-new-address') }}"> 
+                <a href="{{ URL::to('/add-new-postcode') }}"> 
                 <button class="border border-gray-400 bg-purple-500 rounded-md px-4 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
-                        <span class="/">ADD </span>
+                        <span class="/">Postcode </span>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+                        </svg>
+                    </button>
+                </a>
+                                <a href="{{ URL::to('/add-new-address') }}"> 
+                <button class="border border-gray-400 bg-purple-500 rounded-md px-4 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                        <span class="/">Address</span>
                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
                         </svg>
