@@ -7,6 +7,7 @@ use App\Models\States;
 use App\Models\Address;
 use App\Models\addresss;
 use App\Models\Categories;
+use App\Models\Postcodes;
 use Illuminate\Http\Request;
 use Intervention\Image\Image;
 use Illuminate\Validation\Rule;
@@ -26,24 +27,31 @@ class AddressController extends Controller
 
 
 
-    public function viewAddress($id = null)
+    public function viewAddress($urlId = null, $lga_id = null)
     {
         // dd(States::findOrFail($id)->id);
         // get state_id from url if it is empty 
         // choose 1 as the default value
+
         $categories = Categories::get();
-        $state_id = $id == null ? 1 : States::findOrFail($id)->id;
+        $state_id = $urlId == null ? 1 : States::findOrFail($urlId)->id;
         // get all states database table
         $states = States::get();
         // get all lgas data from database table
         $lgas = Lgas::where('state_id', $state_id)->get();
+
+        $postcodes = $lga_id == null ? Postcodes::where('lga_id', 1)->get() : Postcodes::where('lga_id', $lga_id)->get();
+        // dd($postcodes);
         return view('address.index', compact(
             'states',
             'lgas',
             'state_id',
-            'categories'
+            'lga_id',
+            'categories',
+            'postcodes'
         ));
     }
+
 
     public function addAddress(Request $request)
     {

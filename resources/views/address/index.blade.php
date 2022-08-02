@@ -75,9 +75,9 @@
            <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="state" class="block text-sm font-medium text-gray-700">State / Province</label>
                    <select onchange="window.location.href='/add-new-address/'+this.options[this.selectedIndex].value;" id="state" name="state" autocomplete="state-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                        <option value="{{$state_id }}">{{$states[$state_id-1]->name }}</option>
+                        <option id="state_id" value="{{$state_id }}">{{$states[$state_id-1]->name }}</option>
                     @forelse ($states as $state)
-                       <option value="{{$state->id }}">{{$state->name}}</option>
+                       <option id="state_id" value="{{$state->id }}">{{$state->name}}</option>
                   @empty
                        <option value="">No value</option>
                   @endforelse
@@ -85,28 +85,63 @@
               </div>
             <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                 <label for="lga" class="block text-sm font-medium text-gray-700">Lga</label>
-                                   <select id="lga" name="lga" autocomplete="lga-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  @forelse ($lgas as $lga)
-                       <option value="{{ $lga->id }}">{{$lga->name}}</option>
+
+                
+                    <select onchange="loadUrl()" id="lga" name="lga" autocomplete="lga-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                     <option id="lga_id" value="{{$lga_id}}">{{$lgas[1]}}</option>
+                      @forelse ($lgas as $lga)
+                       <option id="lga_id" value="{{ $lga->id }}">{{$lga->name}}</option>
                   @empty
                        <option value="">No value</option>
                   @endforelse
                 </select>
               </div>
-                <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                <script>
+                  function loadUrl(){
+                    var state_id = document.getElementById("state_id").value;
+                    var lga_id = document.getElementById("lga_id").value;
+                    // alert( window.history.pushState('/add-new-address/','/add-new-address/'+state_id+'/'+lga_id));
+                  //  alert (window.history.pushState('/add-new-address/'+state_id+'/'+lga_id;));
+                  return window.location.href='/add-new-address/'+state_id+'/'+lga_id;
+                  }
+            
+                </script>
+                     <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                <label for="town" class="block text-sm font-medium text-gray-700">Town</label>
+                    <select id="town" name="town" autocomplete="town-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  @forelse ($postcodes as $postcode)
+                       <option id="lga_id" value="{{ $postcode->id }}">{{$postcode->town}} </option>
+                  @empty
+                       <option value="">No value</option>
+                  @endforelse
+                </select>
+              </div>
+
+                {{-- <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                 <label for="town" class="block text-sm font-medium text-gray-700">Town(<i>Area/District</i>)</label>
                 <input required type="text" name="town" id="town" autocomplete="address-level2" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
               @error('town')
               <div class="text-red-700 font-light">{{ $message }}</div>
               @enderror
+              </div> --}}
+                      <div class="col-span-6 sm:col-span-6 lg:col-span-2">
+                <label for="code" class="block text-sm font-medium text-gray-700">Postcode</label>
+                    <select id="code" name="code" autocomplete="code-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  @forelse ($postcodes as $postcode)
+                       <option id="lga_id" value="{{ $postcode->id }}">{{$postcode->code}} </option>
+                  @empty
+                       <option value="">No value</option>
+                  @endforelse
+                </select>
               </div>
-              <div class="col-span-6 sm:col-span-3 lg:col-span-2">
+
+              {{-- <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="code" class="block text-sm font-medium text-gray-700">Postal code</label>
                 <input required type="number" name="code" id="code" autocomplete="code" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                 @error('code')
               <div class="font-light italic text-sm text-red-400">{{ $message }}</div>
               @enderror
-              </div>
+              </div> --}}
                   {{-- <div class="col-span-6 sm:col-span-3 lg:col-span-2">
                 <label for="nearest_bus_stop" class="block text-sm font-medium text-gray-700">Postal code</label>
                 <input required type="number" name="nearest_bus_stop" id="nearest_bus_stop" autocomplete="nearest_bus_stop" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">

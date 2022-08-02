@@ -26,7 +26,7 @@ Route::get('/dashboard', function () {
 Route::get('add-new-postcode/{id?}', [PostcodeController::class, 'viewPostcode'])->name('add-new-postcode')->middleware(['auth']);
 Route::post('addPostcode', [PostcodeController::class, 'addPostcode'])->name('add-postcode')->middleware(['auth']);
 
-Route::get('add-new-address/{id?}', [AddressController::class, 'viewAddress'])->name('add-new-address')->middleware(['auth']);
+Route::get('add-new-address/{urlId?}/{lga_id?}', [AddressController::class, 'viewAddress'])->name('add-new-address')->middleware(['auth']);
 Route::post('addAddress', [AddressController::class, 'addAddress'])->name('add-address')->middleware(['auth']);
 
 Route::get('postcode/validate', [PostcodeController::class, 'index'])->name('postcode/validate');

@@ -82,7 +82,6 @@ class PostcodeController extends Controller
                 ->withInput();
         }
 
-
         $postcode = new Postcodes;
         $postcode->code = $request->code;
         $postcode->town = $request->town;
