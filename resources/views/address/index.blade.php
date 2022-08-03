@@ -90,19 +90,24 @@
                     <select onchange="loadUrl()" id="lga" name="lga" autocomplete="lga-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                      {{-- <option id="lga_id" value="{{$lga_id}}">{{$lgas[0]->name}},{{ $lga_id }}</option> --}}
                       @forelse ($lgas as $lga)
-                       <option id="lga_id" value="{{ $lga->id }}">{{$lga->name}}</option>
+                       <option value="{{ $lga->id }}">{{$lga->name}}</option>
                   @empty
                        <option value="">No value</option>
                   @endforelse
                 </select>
               </div>
                 <script>
-                  function loadUrl(){
                     var state_id = document.getElementById("state_id").value;
-                    const lga_id = document.getElementById("lga_id").value;
-                   lga_id.addEventListener('change', function handleChange(event) {
-                    console.log(event.target.value); // 👉️ get selected VALUE
-                    // Current URL: https://my-website.com/page_a
+                    const lgaId = document.getElementById("lga");
+                  function loadUrl(){
+                  lgaId.addEventListener('change', function handleChange(event) {
+                      // console.log(event.target.value); // 👉️ get selected VALUE
+                      // // 👇️ get selected VALUE even outside event handler
+                      // console.log(select.options[select.selectedIndex].value);
+                      // // 👇️ get selected TEXT in or outside event handler
+                      // console.log(select.options[select.selectedIndex].text);
+                     var lga_id = event.target.value;
+                                     // Current URL: https://my-website.com/page_a
                     const nextURL = '/add-new-address/'+state_id+'/'+lga_id;
                     const nextTitle = 'Lga selected';
                     const nextState = { additionalInformation: 'Updated the URL with JS' };
@@ -110,13 +115,11 @@
                     window.history.pushState(nextState, nextTitle, nextURL);
                     // This will replace the current entry in the browser's history, without reloading
                     window.history.replaceState(nextState, nextTitle, nextURL);
+                    });
+
+     
  
 
-                  //   var state_id = document.getElementById("state_id").value;
-                  //   var lga_id = document.getElementById("lga_id").value;
-                  //   // alert( window.history.pushState('/add-new-address/','/add-new-address/'+state_id+'/'+lga_id));
-                  // //  alert (window.history.pushState('/add-new-address/'+state_id+'/'+lga_id;));
-                  // return window.location.href='/add-new-address/'+state_id+'/'+lga_id;
                   }
 
                 </script>
