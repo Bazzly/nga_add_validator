@@ -39,9 +39,9 @@ class AddressController extends Controller
         $states = States::get();
         // get all lgas data from database table
         $lgas = Lgas::where('state_id', $state_id)->get();
-
+        // dd($lga_id);
         $postcodes = $lga_id == null ? Postcodes::where('lga_id', 1)->get() : Postcodes::where('lga_id', $lga_id)->get();
-        // dd($postcodes);
+        // dd($lgas, $lga_id, $postcodes);
         return view('address.index', compact(
             'states',
             'lgas',

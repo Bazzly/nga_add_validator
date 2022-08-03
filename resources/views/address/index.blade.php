@@ -88,7 +88,7 @@
 
                 
                     <select onchange="loadUrl()" id="lga" name="lga" autocomplete="lga-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                     <option id="lga_id" value="{{$lga_id}}">{{$lgas[1]}}</option>
+                     {{-- <option id="lga_id" value="{{$lga_id}}">{{$lgas[0]->name}},{{ $lga_id }}</option> --}}
                       @forelse ($lgas as $lga)
                        <option id="lga_id" value="{{ $lga->id }}">{{$lga->name}}</option>
                   @empty
@@ -99,12 +99,26 @@
                 <script>
                   function loadUrl(){
                     var state_id = document.getElementById("state_id").value;
-                    var lga_id = document.getElementById("lga_id").value;
-                    // alert( window.history.pushState('/add-new-address/','/add-new-address/'+state_id+'/'+lga_id));
-                  //  alert (window.history.pushState('/add-new-address/'+state_id+'/'+lga_id;));
-                  return window.location.href='/add-new-address/'+state_id+'/'+lga_id;
+                    const lga_id = document.getElementById("lga_id").value;
+                   lga_id.addEventListener('change', function handleChange(event) {
+                    console.log(event.target.value); // 👉️ get selected VALUE
+                    // Current URL: https://my-website.com/page_a
+                    const nextURL = '/add-new-address/'+state_id+'/'+lga_id;
+                    const nextTitle = 'Lga selected';
+                    const nextState = { additionalInformation: 'Updated the URL with JS' };
+                    // This will create a new entry in the browser's history, without reloading
+                    window.history.pushState(nextState, nextTitle, nextURL);
+                    // This will replace the current entry in the browser's history, without reloading
+                    window.history.replaceState(nextState, nextTitle, nextURL);
+ 
+
+                  //   var state_id = document.getElementById("state_id").value;
+                  //   var lga_id = document.getElementById("lga_id").value;
+                  //   // alert( window.history.pushState('/add-new-address/','/add-new-address/'+state_id+'/'+lga_id));
+                  // //  alert (window.history.pushState('/add-new-address/'+state_id+'/'+lga_id;));
+                  // return window.location.href='/add-new-address/'+state_id+'/'+lga_id;
                   }
-            
+
                 </script>
                      <div class="col-span-6 sm:col-span-6 lg:col-span-2">
                 <label for="town" class="block text-sm font-medium text-gray-700">Town</label>
